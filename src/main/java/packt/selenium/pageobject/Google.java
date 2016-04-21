@@ -14,7 +14,7 @@ public class Google {
 		baseURL = "https://www.google.com/";
 		driver.get(baseURL);
 		System.out.println(driver.getTitle());
-		if (!driver.getTitle().equals("Google-test")) {
+		if (!driver.getTitle().equals("Google")) {
 			throw new WrongPageException("Incorrect Page of google");
 		}
 	}
@@ -29,3 +29,4 @@ public class Google {
 	
 
 }
+	

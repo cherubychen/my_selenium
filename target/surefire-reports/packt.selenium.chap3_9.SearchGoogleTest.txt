@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: packt.selenium.chap3_9.SearchGoogleTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 16.273 sec <<< FAILURE!
-testGoogleSearch(packt.selenium.chap3_9.SearchGoogleTest)  Time elapsed: 16.268 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 17.602 sec <<< FAILURE!
+testGoogleSearch(packt.selenium.chap3_9.SearchGoogleTest)  Time elapsed: 17.602 sec  <<< ERROR!
 packt.selenium.pageobject.WrongPageException: Incorrect Page of google
 	at packt.selenium.pageobject.Google.<init>(Google.java:18)
 	at packt.selenium.chap3_9.SearchGoogleTest.testGoogleSearch(SearchGoogleTest.java:39)
