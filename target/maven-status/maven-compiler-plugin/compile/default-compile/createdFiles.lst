@@ -1,0 +1,7 @@
+packt\selenium\pageobject\GoogleSearchPage.class
+packt\selenium\pageobject\SeleniumHQ.class
+packt\selenium\pageobject\WrongPageException.class
+packt\selenium\pageobject\Documentation.class
+packt\selenium\pageobject\WebDriverDocumentation.class
+packt\selenium\pageobject\Google.class
+packt\selenium\pageobject\TestDesignConsiderations.class

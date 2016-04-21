@@ -14,7 +14,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitForComponentExampleTest {
+public class WaitForComponentExampleTest1 {
 	private WebDriver driver;
 
 	@Before 

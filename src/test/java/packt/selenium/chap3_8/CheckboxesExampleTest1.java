@@ -1,6 +1,7 @@
 package packt.selenium.chap3_8;
 
-import java.util.List;
+import static org.junit.Assert.*;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -11,11 +12,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.ui.Select;
 
-public class SelectExampleTest {
+public class CheckboxesExampleTest1 {
+	
 	private WebDriver driver;
-	private List<WebElement> options;
 	
 	@Before 
 	public void setup() throws Exception {
@@ -26,7 +26,7 @@ public class SelectExampleTest {
 		driver = new FirefoxDriver(profile);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select");
+		driver.get("http://www.w3schools.com/html/html_form_input_types.asp");
 	}
 	
 	@After 
@@ -35,23 +35,16 @@ public class SelectExampleTest {
 	}
 	
 	@Test 
-	public void testSelect_W3Schools() throws Exception {
-		navigateToSelect();
-		for(WebElement option : options) {
-			System.out.println(option.getText());
-		}
-		driver.switchTo().defaultContent();
+	public void testCheckboxes_W3Schools() throws Exception {
+		WebElement checkbox1 = driver.findElement(By.name("vehicle1"));
+		WebElement checkbox2 = driver.findElement(By.name("vehicle2"));
+		boolean isFirstSelected = checkbox1.isSelected();
+		assertFalse(isFirstSelected);
+		boolean isSecondSelected = checkbox2.isSelected();
+		assertFalse(isSecondSelected);
+		
+		System.out.println(checkbox1.getAttribute("value") + ": " + isFirstSelected);
+		System.out.println(checkbox2.getAttribute("value") + ": " + isSecondSelected);
 	}
 
-	//For Navigation 
-	private void navigateToSelect() {
-		driver.switchTo().frame("iframeResult");
-		Select dropDownList = new Select((driver.findElement(By.tagName("select"))));
-		System.out.println("First selected item: " + dropDownList.getFirstSelectedOption().getText());
-		
-		options = dropDownList.getOptions();
-		System.out.println("Number of items: " + options.size());
-		
-	}
-	
 }

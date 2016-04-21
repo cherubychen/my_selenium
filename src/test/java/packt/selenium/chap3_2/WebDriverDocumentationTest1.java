@@ -1,26 +1,19 @@
-package packt.selenium.chap3_7;
+package packt.selenium.chap3_2;
 
-import static org.junit.Assert.assertEquals;
-
+import org.junit.*;
+import static org.junit.Assert.*;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import packt.selenium.pageobject.Documentation;
 import packt.selenium.pageobject.SeleniumHQ;
-import packt.selenium.pageobject.TestDesignConsiderations;
 
-public class TestDesignConsiderationsTest {
-	
+public class WebDriverDocumentationTest1 {
 	private WebDriver driver;
-	private Documentation documentationPage;
 	private SeleniumHQ seleniumHQ;
-	private TestDesignConsiderations testDesignConsiderationsPage;
+	private Documentation documentationPage;
 	
 	@Before 
 	public void setup() throws Exception {
@@ -39,15 +32,15 @@ public class TestDesignConsiderationsTest {
 	}
 	
 	@Test
-	public void testHeading_PageObjectDesignPattern() throws Exception {
+	public void testVerifyTitle_WebDriverDocumentation() throws Exception {
 		seleniumHQ = new SeleniumHQ(driver);
-		documentationPage = seleniumHQ.clickDocumentation();
-		testDesignConsiderationsPage = documentationPage.navigateToTestDesignConsiderations();
-	
-		String actualHeading = testDesignConsiderationsPage.getTextHeadingPageObjectDesignPattern();
-		System.out.println("Actual Heading is: " + actualHeading);
-		String expectedHeading = "Page Object Design Pattern";
-		assertEquals (expectedHeading, actualHeading);
+		seleniumHQ.clickDocumentation();
+		documentationPage = new Documentation(driver);
+		documentationPage.navigateToWebDriverDocumentation();
+		
+		String actualTitle = driver.getTitle();
+		String expectedTitle = "Selenium WebDriver ¡ª Selenium Documentation";
+		assertEquals (expectedTitle, actualTitle);
 	}
 
 }

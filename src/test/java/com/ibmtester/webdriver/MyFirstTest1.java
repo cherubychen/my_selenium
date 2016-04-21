@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 @SuppressWarnings("deprecation")
-public class MyFirstTest {
+public class MyFirstTest1 {
 	@Test
 	public void startWebDriver() {
 		

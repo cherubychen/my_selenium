@@ -1,7 +1,6 @@
 package packt.selenium.chap3_8;
 
-import static org.junit.Assert.*;
-
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -13,9 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
-public class CheckboxesExampleTest {
-	
+public class RadioButtonExampleTest1 {
 	private WebDriver driver;
+	private List<WebElement> radioGroup;
 	
 	@Before 
 	public void setup() throws Exception {
@@ -26,7 +25,6 @@ public class CheckboxesExampleTest {
 		driver = new FirefoxDriver(profile);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://www.w3schools.com/html/html_form_input_types.asp");
 	}
 	
 	@After 
@@ -34,17 +32,24 @@ public class CheckboxesExampleTest {
 		driver.quit();
 	}
 	
-	@Test 
-	public void testCheckboxes_W3Schools() throws Exception {
-		WebElement checkbox1 = driver.findElement(By.name("vehicle1"));
-		WebElement checkbox2 = driver.findElement(By.name("vehicle2"));
-		boolean isFirstSelected = checkbox1.isSelected();
-		assertFalse(isFirstSelected);
-		boolean isSecondSelected = checkbox2.isSelected();
-		assertFalse(isSecondSelected);
-		
-		System.out.println(checkbox1.getAttribute("value") + ": " + isFirstSelected);
-		System.out.println(checkbox2.getAttribute("value") + ": " + isSecondSelected);
+	//For validation 
+	@Test
+	public void testGetSelectedRadioButton() throws Exception {
+		navigateToRadioButton();
+		for (WebElement element : radioGroup) {
+			boolean isRadioSelected = element.isSelected();
+			if (isRadioSelected == true) {
+				System.out.println("Selected Radio button: " + element.getAttribute("value"));
+			}
+		}
 	}
 
+	//For navigation 
+	public void navigateToRadioButton() {
+		driver.get("http://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_radio");
+		driver.switchTo().frame("iframeResult");
+		radioGroup = driver.findElements(By.name("gender"));
+		System.out.println("Number of Radio buttons: " + radioGroup.size());
+	}
+	
 }

@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 
-public class MultipleWindowsExampleTest {
+public class MultipleWindowsExampleTest1 {
 	private WebDriver driver;
 	private JavascriptExecutor jse;
 	String windowGoogle, windowBing; 

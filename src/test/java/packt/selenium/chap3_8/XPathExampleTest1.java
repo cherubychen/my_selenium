@@ -1,6 +1,5 @@
 package packt.selenium.chap3_8;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -12,9 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
-public class RadioButtonExampleTest {
+public class XPathExampleTest1 {
 	private WebDriver driver;
-	private List<WebElement> radioGroup;
 	
 	@Before 
 	public void setup() throws Exception {
@@ -25,6 +23,7 @@ public class RadioButtonExampleTest {
 		driver = new FirefoxDriver(profile);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get("http://www.w3schools.com/xsl/xpath_intro.asp");
 	}
 	
 	@After 
@@ -32,24 +31,10 @@ public class RadioButtonExampleTest {
 		driver.quit();
 	}
 	
-	//For validation 
-	@Test
-	public void testGetSelectedRadioButton() throws Exception {
-		navigateToRadioButton();
-		for (WebElement element : radioGroup) {
-			boolean isRadioSelected = element.isSelected();
-			if (isRadioSelected == true) {
-				System.out.println("Selected Radio button: " + element.getAttribute("value"));
-			}
-		}
+	@Test 
+	public void testXPathExample() throws Exception {
+		WebElement link = driver.findElement(By.xpath(".//*[@id='main']/h1"));
+		String linkTest = link.getText();
+		System.out.println(linkTest);
 	}
-
-	//For navigation 
-	public void navigateToRadioButton() {
-		driver.get("http://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_radio");
-		driver.switchTo().frame("iframeResult");
-		radioGroup = driver.findElements(By.name("gender"));
-		System.out.println("Number of Radio buttons: " + radioGroup.size());
-	}
-	
 }

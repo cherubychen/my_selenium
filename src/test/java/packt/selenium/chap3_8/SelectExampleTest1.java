@@ -1,5 +1,6 @@
 package packt.selenium.chap3_8;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -10,9 +11,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.support.ui.Select;
 
-public class XPathExampleTest {
+public class SelectExampleTest1 {
 	private WebDriver driver;
+	private List<WebElement> options;
 	
 	@Before 
 	public void setup() throws Exception {
@@ -23,7 +26,7 @@ public class XPathExampleTest {
 		driver = new FirefoxDriver(profile);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("http://www.w3schools.com/xsl/xpath_intro.asp");
+		driver.get("http://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select");
 	}
 	
 	@After 
@@ -32,9 +35,23 @@ public class XPathExampleTest {
 	}
 	
 	@Test 
-	public void testXPathExample() throws Exception {
-		WebElement link = driver.findElement(By.xpath(".//*[@id='main']/h1"));
-		String linkTest = link.getText();
-		System.out.println(linkTest);
+	public void testSelect_W3Schools() throws Exception {
+		navigateToSelect();
+		for(WebElement option : options) {
+			System.out.println(option.getText());
+		}
+		driver.switchTo().defaultContent();
 	}
+
+	//For Navigation 
+	private void navigateToSelect() {
+		driver.switchTo().frame("iframeResult");
+		Select dropDownList = new Select((driver.findElement(By.tagName("select"))));
+		System.out.println("First selected item: " + dropDownList.getFirstSelectedOption().getText());
+		
+		options = dropDownList.getOptions();
+		System.out.println("Number of items: " + options.size());
+		
+	}
+	
 }
