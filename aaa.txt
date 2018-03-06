@@ -1,3 +1,0 @@
-hello cheruby,
-
-I am testing this new branch.
